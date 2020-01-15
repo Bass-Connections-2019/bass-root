@@ -1,6 +1,7 @@
 # bass-root
 root folder for the entire bass connections project
 
-testing
+Testing the pipeline:
+Write your name here below:
 
-Testing it pipeline
+Scott
