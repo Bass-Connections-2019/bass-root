@@ -2,3 +2,5 @@
 root folder for the entire bass connections project
 
 testing
+
+Testing it pipeline
