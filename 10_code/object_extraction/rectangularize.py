@@ -1,7 +1,13 @@
+"""
+@Author: Aneesh Gupta
+Automate rectangular patch extraction from building rooftops
+This works in conjunction with the Models for Remote Sensing codebase
+https://github.com/bohaohuang/mrs
+
+References: https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix/30418912#30418912
+"""
 import numpy as np
 import cv2
-import maxrect
-# from maxrect import get_intersection, get_maximal_rectangle, rect2poly
 from PIL import Image
 from scipy import ndimage
 from scipy.spatial import ConvexHull, convex_hull_plot_2d
@@ -15,24 +21,11 @@ from mrs_utils import misc_utils, vis_utils, eval_utils
 from collections import namedtuple
 from operator import mul
 
-
 Info = namedtuple('Info', 'start height')
-# https://stackoverflow.com/questions/2478447/find-largest-rectangle-containing-only-zeros-in-an-n%C3%97n-binary-matrix/30418912#30418912
+
 def max_rect(mat, value=0):
     """returns (height, width, left_column, bottom_row) of the largest rectangle 
     containing all `value`'s.
-
-    Example:
-    [[0, 0, 0, 0, 0, 0, 0, 0, 3, 2],
-     [0, 4, 0, 2, 4, 0, 0, 1, 0, 0],
-     [1, 0, 1, 0, 0, 0, 3, 0, 0, 4],
-     [0, 0, 0, 0, 4, 2, 0, 0, 0, 0],
-     [0, 0, 0, 2, 0, 0, 0, 0, 0, 0],
-     [4, 3, 0, 0, 1, 2, 0, 0, 0, 0],
-     [3, 0, 0, 0, 2, 0, 0, 0, 0, 4],
-     [0, 0, 0, 1, 0, 3, 2, 4, 3, 2],
-     [0, 3, 0, 0, 0, 2, 0, 1, 0, 0]]
-     gives: (3, 4, 6, 5)
     """
     it = iter(mat)
     hist = [(el==value) for el in next(it, [])]

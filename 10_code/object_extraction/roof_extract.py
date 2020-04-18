@@ -1,3 +1,9 @@
+"""
+@Author: Aneesh Gupta
+This works in conjunction with the Models for Remote Sensing codebase
+https://github.com/bohaohuang/mrs
+
+"""
 import numpy as np
 import cv2
 from PIL import Image
